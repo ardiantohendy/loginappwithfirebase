@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283493388071",
+    "project_id": "newloginapp-ce0ab",
+    "storage_bucket": "newloginapp-ce0ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283493388071:android:77cfd9bc1881f4d766a302",
+        "android_client_info": {
+          "package_name": "com.example.new_user_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283493388071-5r2qd26iluog2ujj3bpafh5a0dr66scp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLqITUKuCQJP1a85yfZVAKgBivnkdBsmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283493388071-5r2qd26iluog2ujj3bpafh5a0dr66scp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
