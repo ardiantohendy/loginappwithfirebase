@@ -22,9 +22,9 @@ class HomePage extends StatelessWidget {
   Widget _signOutButton() {
     return ElevatedButton(
       onPressed: signOut,
-      style: ElevatedButton.styleFrom(primary: Colors.white),
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
       child: const Text(
-        "Sign in as anonymous",
+        "Sign out",
         style: TextStyle(color: Colors.black),
       ),
     );
