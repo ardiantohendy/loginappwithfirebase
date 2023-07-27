@@ -39,7 +39,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
+  # The "flutter_li nts" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
@@ -47,6 +47,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.1
+  quickalert:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

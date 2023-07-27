@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_user_login/auth.dart';
+import 'package:quickalert/quickalert.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         errorMessage = e.message;
       });
+      _errorMessage();
     }
   }
 
@@ -39,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         errorMessage = e.message;
       });
+      _errorMessage();
     }
   }
 
@@ -71,8 +74,14 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  _errorMessage() {
+    return errorMessage == ''
+        ? ''
+        : QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            text: errorMessage,
+          );
   }
 
   Widget _submitButton() {
@@ -82,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
       child: Container(
         width: 80,
-        padding: EdgeInsets.only(top: 15, bottom: 15),
+        padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: Text(
           isLogin ? 'Login' : 'Register',
           style: const TextStyle(color: Colors.white),
@@ -122,7 +131,9 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             _entryField('email', _controllerEmail),
             _entryFieldPassword("password", _controllerPassword),
-            _errorMessage(),
+            SizedBox(
+              height: 20,
+            ),
             _submitButton(),
             _loginOrRegisterButton()
           ],
