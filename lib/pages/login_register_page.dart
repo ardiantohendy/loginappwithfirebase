@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? errorMessage = "";
   bool isLogin = true;
+  bool isEmailVerified = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -23,6 +24,10 @@ class _LoginPageState extends State<LoginPage> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      if (Auth().currentUser!.emailVerified != true &&
+          Auth().currentUser != null) {
+        await Auth().sendEmailVerify();
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -37,6 +42,10 @@ class _LoginPageState extends State<LoginPage> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      if (Auth().currentUser!.emailVerified != true &&
+          Auth().currentUser != null) {
+        await Auth().sendEmailVerify();
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -86,8 +95,13 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return ElevatedButton(
-      onPressed:
-          isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
+      onPressed: () {
+        if (isLogin) {
+          signInWithEmailAndPassword();
+        } else {
+          createUserWithEmailAndPassword();
+        }
+      },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
       child: Container(
         width: 80,
@@ -131,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             _entryField('email', _controllerEmail),
             _entryFieldPassword("password", _controllerPassword),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             _submitButton(),
