@@ -12,7 +12,10 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _title() {
-    return const Text("Firebase Auth");
+    return const Text(
+      "Brew Crew",
+      style: TextStyle(color: Colors.white),
+    );
   }
 
   Widget _userUid() {
@@ -22,11 +25,22 @@ class HomePage extends StatelessWidget {
   Widget _signOutButton() {
     return ElevatedButton(
       onPressed: signOut,
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-      child: const Text(
-        "Sign out",
-        style: TextStyle(color: Colors.black),
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
+      child: Container(
+        width: 80,
+        padding: const EdgeInsets.only(top: 15, bottom: 15),
+        child: const Text(
+          "Sign out",
+          style: TextStyle(color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
       ),
+    );
+  }
+
+  Widget _sizedBox() {
+    return const SizedBox(
+      height: 15,
     );
   }
 
@@ -46,7 +60,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_userUid(), _signOutButton()],
+          children: [_userUid(), _sizedBox(), _signOutButton()],
         ),
       ),
     );
