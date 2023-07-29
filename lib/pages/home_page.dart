@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_user_login/auth.dart';
+import 'package:new_user_login/pages/login_register_page.dart';
+import 'package:quickalert/quickalert.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final User? user = Auth().currentUser;
 
   Future<void> signOut() async {
     await Auth().signOut();
+  }
+
+  _signOutAlert() {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.confirm,
+      text: 'Do you want to logout',
+      onConfirmBtnTap: signOut,
+      confirmBtnText: 'Yes',
+      cancelBtnText: 'No',
+      confirmBtnColor: Colors.green,
+    );
   }
 
   Widget _title() {
@@ -60,7 +79,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_userUid(), _sizedBox(), _signOutButton()],
+          children: [
+            _userUid(),
+            _sizedBox(),
+            _signOutButton(),
+          ],
         ),
       ),
     );

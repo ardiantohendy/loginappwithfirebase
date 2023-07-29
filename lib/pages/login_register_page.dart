@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_user_login/auth.dart';
+import 'package:new_user_login/pages/home_page.dart';
 import 'package:quickalert/quickalert.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? errorMessage = "";
   bool isLogin = true;
+  bool isVerified = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -24,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         password: _controllerPassword.text,
       );
       if (Auth().currentUser!.emailVerified == false) {
-        _sendVerifyAlert();
+        _sendVerifyWarningAlert();
         Auth().sendEmailVerify();
       }
     } on FirebaseAuthException catch (e) {
@@ -90,6 +92,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  _sendVerifyWarningAlert() {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text:
+          'Your email have not verified yet!, check your email, we just send your new verification',
+    );
+  }
+
   _errorMessage() {
     return errorMessage == ''
         ? ''
@@ -133,6 +144,12 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _sizedBox() {
+    return const SizedBox(
+      height: 20,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,11 +169,9 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             _entryField('email', _controllerEmail),
             _entryFieldPassword("password", _controllerPassword),
-            const SizedBox(
-              height: 20,
-            ),
+            _sizedBox(),
             _submitButton(),
-            _loginOrRegisterButton()
+            _loginOrRegisterButton(),
           ],
         ),
       ),
