@@ -13,7 +13,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? errorMessage = "";
   bool isLogin = true;
-  bool isEmailVerified = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -24,9 +23,9 @@ class _LoginPageState extends State<LoginPage> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
-      if (Auth().currentUser!.emailVerified != true &&
-          Auth().currentUser != null) {
-        await Auth().sendEmailVerify();
+      if (Auth().currentUser!.emailVerified == false) {
+        _sendVerifyAlert();
+        Auth().sendEmailVerify();
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -42,9 +41,9 @@ class _LoginPageState extends State<LoginPage> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
-      if (Auth().currentUser!.emailVerified != true &&
-          Auth().currentUser != null) {
-        await Auth().sendEmailVerify();
+      if (Auth().currentUser!.emailVerified == false) {
+        _sendVerifyAlert();
+        Auth().sendEmailVerify();
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -80,6 +79,14 @@ class _LoginPageState extends State<LoginPage> {
       controller: controller,
       obscureText: true,
       decoration: InputDecoration(labelText: title),
+    );
+  }
+
+  _sendVerifyAlert() {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      text: 'Check your email, we just send your verification',
     );
   }
 
