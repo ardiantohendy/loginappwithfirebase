@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_user_login/auth.dart';
 import 'package:new_user_login/pages/home_page.dart';
-import 'package:new_user_login/pages/login_register_page.dart';
+import 'package:new_user_login/pages/login_page.dart';
+import 'package:new_user_login/pages/register_page.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
@@ -19,7 +20,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if (snapshot.hasData && snapshot.data!.emailVerified) {
           return HomePage();
         } else {
-          return const LoginPage();
+          return const RegisterPage();
         }
       },
     );
