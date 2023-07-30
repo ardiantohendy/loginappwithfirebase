@@ -20,7 +20,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if (snapshot.hasData && snapshot.data!.emailVerified) {
           return HomePage();
         } else {
-          return const RegisterPage();
+          return const LoginPage();
         }
       },
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_user_login/auth.dart';
 import 'package:new_user_login/pages/home_page.dart';
+import 'package:new_user_login/pages/register_page.dart';
 import 'package:quickalert/quickalert.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,24 +37,6 @@ class _LoginPageState extends State<LoginPage> {
       _errorMessage();
     }
   }
-
-  // Future<void> createUserWithEmailAndPassword() async {
-  //   try {
-  //     await Auth().createWithEmailAndPassword(
-  //       email: _controllerEmail.text,
-  //       password: _controllerPassword.text,
-  //     );
-  //     if (Auth().currentUser!.emailVerified == false) {
-  //       _sendVerifyAlert();
-  //       Auth().sendEmailVerify();
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     setState(() {
-  //       errorMessage = e.message;
-  //     });
-  //     _errorMessage();
-  //   }
-  // }
 
   Widget _title() {
     return const Text(
@@ -108,11 +91,14 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         if (isLogin) {
           signInWithEmailAndPassword();
-          if (isVerified) {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => HomePage()),
-                (route) => false);
-          }
+          setState(() {
+            isVerified = Auth().currentUser!.emailVerified;
+          });
+          // if (isVerified) {
+          //   Navigator.of(context).pushAndRemoveUntil(
+          //       MaterialPageRoute(builder: (context) => HomePage()),
+          //       (route) => false);
+          // }
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
@@ -130,7 +116,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginOrRegisterButton() {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const RegisterPage()),
+        );
+      },
       child: const Text('Register instead'),
     );
   }
@@ -169,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

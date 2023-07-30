@@ -102,7 +102,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _loginOrRegisterButton() {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
       child: const Text('Sign in instead'),
     );
   }
@@ -141,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
