@@ -16,6 +16,12 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> signOut() async {
     await Auth().signOut();
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+        (route) => false);
   }
 
   _signOutAlert() {
@@ -43,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _signOutButton() {
     return ElevatedButton(
-      onPressed: signOut,
+      onPressed: _signOutAlert,
       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
       child: Container(
         width: 80,

@@ -28,7 +28,13 @@ class _LoginPageState extends State<LoginPage> {
       );
       if (Auth().currentUser!.emailVerified == false) {
         _sendVerifyWarningAlert();
-        Auth().sendEmailVerify();
+        await Auth().sendEmailVerify();
+      } else {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+            (route) => false);
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -91,14 +97,11 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         if (isLogin) {
           signInWithEmailAndPassword();
-          setState(() {
-            isVerified = Auth().currentUser!.emailVerified;
-          });
-          // if (isVerified) {
-          //   Navigator.of(context).pushAndRemoveUntil(
-          //       MaterialPageRoute(builder: (context) => HomePage()),
-          //       (route) => false);
-          // }
+          setState(
+            () {
+              isVerified = Auth().currentUser!.emailVerified;
+            },
+          );
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),

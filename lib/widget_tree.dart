@@ -14,15 +14,31 @@ class WidgetTree extends StatefulWidget {
 class _WidgetTreeState extends State<WidgetTree> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: Auth().authStateChanges,
+    return FutureBuilder(
+      future: Auth().currentUser?.reload(),
       builder: (context, snapshot) {
-        if (snapshot.hasData && snapshot.data!.emailVerified) {
-          return HomePage();
+        if (snapshot.connectionState == ConnectionState.done) {
+          final user = Auth().currentUser;
+          if (user != null && user.emailVerified) {
+            return HomePage();
+          } else {
+            return LoginPage();
+          }
         } else {
-          return const LoginPage();
+          return LoginPage();
         }
       },
     );
+
+    // StreamBuilder(
+    //   stream: Auth().authStateChanges,
+    //   builder: (context, snapshot) {
+    //     if (snapshot.hasData && snapshot.data!.emailVerified) {
+    //       return HomePage();
+    //     } else {
+    //       return const LoginPage();
+    //     }
+    //   },
+    // );
   }
 }

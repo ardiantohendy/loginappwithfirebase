@@ -35,13 +35,6 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  Widget _title() {
-    return const Text(
-      "Brew Crew",
-      style: TextStyle(color: Colors.white),
-    );
-  }
-
   Widget _entryField(
     String title,
     TextEditingController controller,
