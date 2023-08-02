@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:new_user_login/auth.dart';
+import 'package:new_user_login/services/auth.dart';
 import 'package:new_user_login/pages/home_page.dart';
 import 'package:new_user_login/pages/register_page.dart';
 import 'package:quickalert/quickalert.dart';

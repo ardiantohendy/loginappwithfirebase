@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_user_login/auth.dart';
+import 'package:new_user_login/services/auth.dart';
 import 'package:new_user_login/pages/home_page.dart';
 import 'package:new_user_login/pages/login_page.dart';
 import 'package:new_user_login/pages/register_page.dart';
