@@ -38,13 +38,14 @@ class _HomePageState extends State<HomePage> {
 
   Widget _title() {
     return const Text(
-      "Brew Crew",
+      "BREW CREW",
       style: TextStyle(color: Colors.white),
     );
   }
 
   Widget _userUid() {
-    return Text(user?.email ?? "User Email");
+    return Text(user?.email ?? "User Email",
+        style: TextStyle(color: Colors.white, fontSize: 16));
   }
 
   Widget _signOutButton() {
@@ -77,6 +78,23 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: _title(),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Container(
         height: double.infinity,
