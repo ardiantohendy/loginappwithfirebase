@@ -75,26 +75,44 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: _title(),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.brown[400],
+          child: ListView(
+            children: [
+              const DrawerHeader(
+                child: Center(
+                  child: Text(
+                    "Brew Crew",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  "Logout",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                onTap: () {
+                  _signOutAlert();
+                },
+              )
+            ],
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
-          ),
-        ],
       ),
       body: Container(
         height: double.infinity,
