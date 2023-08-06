@@ -45,28 +45,29 @@ class _HomePageState extends State<HomePage> {
 
   Widget _userUid() {
     return Text(user?.email ?? "User Email",
-        style: TextStyle(color: Colors.white, fontSize: 16));
+        style: const TextStyle(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400));
   }
 
-  Widget _signOutButton() {
-    return ElevatedButton(
-      onPressed: _signOutAlert,
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
-      child: Container(
-        width: 80,
-        padding: const EdgeInsets.only(top: 15, bottom: 15),
-        child: const Text(
-          "Sign out",
-          style: TextStyle(color: Colors.white),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+  // Widget _signOutButton() {
+  //   return ElevatedButton(
+  //     onPressed: _signOutAlert,
+  //     style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[400]),
+  //     child: Container(
+  //       width: 80,
+  //       padding: const EdgeInsets.only(top: 15, bottom: 15),
+  //       child: const Text(
+  //         "Sign out",
+  //         style: TextStyle(color: Colors.white),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _sizedBox() {
-    return const SizedBox(
-      height: 15,
+  Widget _sizedBox(height) {
+    return SizedBox(
+      height: height,
     );
   }
 
@@ -86,15 +87,30 @@ class _HomePageState extends State<HomePage> {
           color: Colors.brown[400],
           child: ListView(
             children: [
-              const DrawerHeader(
-                child: Center(
-                  child: Text(
-                    "Brew Crew",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
+              DrawerHeader(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _sizedBox(10.0),
+                    const Text(
+                      "Brew Crew",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 34,
+                      ),
                     ),
-                  ),
+                    _sizedBox(18.0),
+                    const Text(
+                      "Hello",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    _sizedBox(5.0),
+                    _userUid(),
+                  ],
                 ),
               ),
               ListTile(
@@ -121,11 +137,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _userUid(),
-            _sizedBox(),
-            _signOutButton(),
-          ],
+          children: [],
         ),
       ),
     );
