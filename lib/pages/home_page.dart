@@ -90,23 +90,21 @@ class _HomePageState extends State<HomePage> {
               DrawerHeader(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _sizedBox(10.0),
+                    _sizedBox(5.0),
                     const Text(
                       "Brew Crew",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 34,
+                        fontSize: 24,
                       ),
                     ),
-                    _sizedBox(18.0),
-                    const Text(
-                      "Hello",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400),
+                    _sizedBox(5.0),
+                    const Icon(
+                      Icons.person,
+                      size: 70,
+                      color: Colors.white,
                     ),
                     _sizedBox(5.0),
                     _userUid(),
